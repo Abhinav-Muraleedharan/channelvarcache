@@ -1,0 +1,55 @@
+# ChannelVarCache configuration
+
+model:
+  name: "runwayml/stable-diffusion-v1-5"
+  dtype: "float16"  # float16 for 6GB VRAM
+  device: "cuda"
+
+inference:
+  num_steps: 50
+  scheduler: "ddim"           # ddim | dpmsolver++ | euler
+  guidance_scale: 7.5
+  resolution: 512
+  seed: 42                    # null for random
+
+caching:
+  method: "channelvarcache"   # channelvarcache | deepcache | teacache | none
+  
+  # ChannelVarCache params
+  channelvarcache:
+    threshold: null            # null = auto from profiling, or set float
+    per_block_threshold: true  # use per-block thresholds vs global
+    warmup_steps: 1            # always compute first N steps fully
+    normalize_variance: true   # normalize variance per block by its running mean
+    
+  # DeepCache baseline params
+  deepcache:
+    cache_interval: 3          # reuse every N steps
+    cache_branch_id: 0         # which skip branch to cache (0 = shallowest)
+    
+  # TeaCache baseline params (simplified reimplementation)
+  teacache:
+    rel_l1_thresh: 0.3         # relative L1 threshold on timestep emb diff
+
+profiling:
+  num_prompts: 500
+  prompt_source: "coco"        # coco | parti | custom
+  coco_captions_path: null     # path to COCO captions JSON, null = download
+  log_cosine_sim: true         # also log cosine similarity for comparison
+  log_timestep_emb_diff: true  # also log TeaCache-style signal for comparison
+  output_dir: "results/profiles"
+
+benchmark:
+  num_prompts: 5000
+  prompt_source: "coco"
+  output_dir: "results/benchmark"
+  compute_fid: true
+  compute_clip_score: true
+  compute_lpips: true
+  save_images: false           # save generated images (disk heavy)
+  speedup_targets: [1.5, 2.0, 2.5]  # target speedups to match across methods
+
+figures:
+  output_dir: "results/figures"
+  format: "pdf"                # pdf | png
+  dpi: 300
