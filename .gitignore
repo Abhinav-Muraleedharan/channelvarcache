@@ -34,7 +34,6 @@ env/
 *~
 
 # Results (generated at runtime)
-results/
 *.pth
 *.pt
 

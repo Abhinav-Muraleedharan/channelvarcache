@@ -1,0 +1,56 @@
+{
+  "num_prompts": 10,
+  "methods": {
+    "none": {
+      "mean_latency_ms": 7139.403524738736,
+      "std_latency_ms": 44.99464689094709,
+      "peak_vram_mb": 2826.134016,
+      "speedup": 1.0,
+      "quality": {}
+    },
+    "channelvarcache": {
+      "mean_latency_ms": 4479.64875837788,
+      "std_latency_ms": 33.63216724036552,
+      "peak_vram_mb": 2850.4576,
+      "speedup": 1.593741810981622,
+      "quality": {
+        "clip_score_cached": 0.3311713457107544,
+        "clip_score_baseline": 0.3284983098506927,
+        "lpips": 0.24147254154086112
+      }
+    },
+    "deepcache": {
+      "mean_latency_ms": 5577.858870662749,
+      "std_latency_ms": 12.812424751492339,
+      "peak_vram_mb": 2838.012416,
+      "speedup": 1.2799541347826264,
+      "quality": {
+        "clip_score_cached": 0.3272733002901077,
+        "clip_score_baseline": 0.3284983098506927,
+        "lpips": 0.13609624579548835
+      }
+    },
+    "ddim_25": {
+      "mean_latency_ms": 3626.1562786297873,
+      "std_latency_ms": 2.8842926643099838,
+      "peak_vram_mb": 2805.15584,
+      "speedup": 1.9688626126826771,
+      "quality": {
+        "clip_score_cached": 0.3246059983968735,
+        "clip_score_baseline": 0.3284983098506927,
+        "lpips": 0.15493723340332508
+      }
+    },
+    "ddim_20": {
+      "mean_latency_ms": 2904.5551751274616,
+      "std_latency_ms": 12.424921707857129,
+      "peak_vram_mb": 2805.15584,
+      "speedup": 2.4580023770508803,
+      "quality": {
+        "clip_score_cached": 0.3273831486701965,
+        "clip_score_baseline": 0.3284983098506927,
+        "lpips": 0.17971182689070703
+      }
+    }
+  }
+}
